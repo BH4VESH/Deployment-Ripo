@@ -28,15 +28,12 @@ const http = require('http').Server(app);
 const initializeSocket = require("./service/socketService")
 // const server = http.Server(app);
 
-const port = process.env.port;
+const port = process.env.port || 5000;
 
 // mongoose.connect(process.env.mongo_path)
 //   .then(() => console.log('MongoDB Connected'))
 //   .catch(err => console.log(err));
-mongoose.connect(process.env.mongo_path,{
-  bufferCommands: false, // Disable command buffering
-  bufferTimeoutMS: 0,    // Disable timeout on buffered commands
-})
+mongoose.connect(process.env.mongo_path)
   .then(() => 
     {
       console.log('MongoDB Connected')
