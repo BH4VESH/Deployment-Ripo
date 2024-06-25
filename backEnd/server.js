@@ -34,26 +34,32 @@ const port = process.env.port;
 //   .then(() => console.log('MongoDB Connected'))
 //   .catch(err => console.log(err));
 mongoose.connect(process.env.mongo_path)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .then(() => 
+    {
+      console.log('MongoDB Connected')
+      initializeCronJob();
 
-  const corsOptions = {
-    origin: 'http://localhost:4200',
-    optionsSuccessStatus: 200
-  };
-
-app.use(cors());
-app.use(bodyParser.json());
-
-// const JWT_SECRET = 'secret_key'; 
-
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  if (!user) {
-    return res.status(401).send('Invalid username');
-  }
-  if (user.password !== password) {
+      
+    })
+    .catch(err => console.log(err));
+    
+    const corsOptions = {
+      origin: 'http://localhost:4200',
+      optionsSuccessStatus: 200
+    };
+    
+    app.use(cors());
+    app.use(bodyParser.json());
+    
+    // const JWT_SECRET = 'secret_key'; 
+    
+    app.post('/login', async (req, res) => {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+      if (!user) {
+        return res.status(401).send('Invalid username');
+      }
+      if (user.password !== password) {
     return res.status(401).send('Invalid password');
   }
   if (user) {
@@ -97,7 +103,6 @@ app.use('/ridehistory',checkAuth,ridedHistoryRoutes);
 
 // for the socket connection
 initializeSocket(http)
-  initializeCronJob();
 
 http.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
