@@ -8,34 +8,34 @@ const mongoose = require("mongoose");
 
 // const TIMEOUT_DURATION = 10000;
 
-// async function fetchSettings() {
-//     try {
-//       const settings = await Setting.findOne({});
-//       if (settings) {
-//         return settings;
-//       } 
+async function fetchSettings() {
+    try {
+      const settings = await Setting.findOne({});
+      if (settings) {
+        return settings;
+      } 
       
-//     } catch (error) {
-//       console.error('Error fetching settings:', error);
-//       return {
-//         selectedSeconds: 10,
-//       };
-//     }
-//   }
+    } catch (error) {
+      console.error('Error fetching settings:', error);
+      return {
+        selectedSeconds: 10,
+      };
+    }
+  }
 
 module.exports = () => {
   
 // ------------------cron part-------------------
 
-const TIMEOUT_DURATION = 10000; // Time duration for each driver assignment
+// const TIMEOUT_DURATION = 10000; // Time duration for each driver assignment
 
 
 cron.schedule('* * * * * *', async () => {
 
     console.log("Cron job executing...");
 
-    // const settings = await fetchSettings();
-    // const TIMEOUT_DURATION = settings.selectedSeconds * 1000;
+    const settings = await fetchSettings();
+    const TIMEOUT_DURATION = settings.selectedSeconds * 1000;
 
 
     try {
