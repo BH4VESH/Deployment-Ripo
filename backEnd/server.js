@@ -37,9 +37,6 @@ mongoose.connect(process.env.mongo_path)
   .then(() => 
     {
       console.log('MongoDB Connected')
-      initializeCronJob();
-
-      
     })
     .catch(err => console.log(err));
     
@@ -107,6 +104,7 @@ app.use('/ridehistory',checkAuth,ridedHistoryRoutes);
 
 // for the socket connection
 initializeSocket(http)
+initializeCronJob();
 
 http.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
