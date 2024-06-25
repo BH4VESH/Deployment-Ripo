@@ -3,7 +3,7 @@
 //     apiUrl: `13.201.61.84`
     
 // };
-const PORT = 3000//3000
+const PORT = 6000//3000
 const IP = `13.233.110.165`
 // const IP = 'localhost'
 
