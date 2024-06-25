@@ -6,7 +6,8 @@ const createrideModel=require('../models/createRide')
 
 async function initializeSocket(server) {
 
-  const io = socketio(server, { cors: { origin: ["http://localhost:4200"] } });
+  // const io = socketio(server, { cors: { origin: ["http://localhost:4200"] } });
+  const io = socketio(server);
 
   global.io = io;
 
