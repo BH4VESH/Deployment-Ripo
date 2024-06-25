@@ -209,6 +209,12 @@ export class RideHistoryComponent implements OnInit {
       //   }
       // );
 
+      const mapOptions: google.maps.MapOptions = {
+        center: { lat: 22.2598107, lng: 70.7287299 },
+        zoom: 10
+      };
+      this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
+
       this.geocoder = new google.maps.Geocoder();
       this.polyline = new google.maps.Polyline({
         map: this.map,
